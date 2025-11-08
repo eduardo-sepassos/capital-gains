@@ -1,7 +1,8 @@
-﻿namespace GanhoDeCapital.Models;
+﻿using CapitalGains.Constants;
+
+namespace GanhoDeCapital.Models;
 public class Position
 {
-    private const decimal UNPAYABLE_MAX_VALUE = 20000;
     public long Units { get; set; } = 0;
     public decimal AveragePrice { get; set; } = 0;
     public decimal Loss { get; set; } = 0;
@@ -11,8 +12,6 @@ public class Position
         var strategy = SetStrategy(operation);
 
         var tax = strategy();
-
-        this.Units += operation.Quantity;
 
         return tax;
 
@@ -40,6 +39,7 @@ public class Position
         var newAverage = (currentAverage + operationAverage) / (this.Units + operation.Quantity);
 
         this.AveragePrice = Math.Round(newAverage, 2);
+        this.Units += operation.Quantity;
 
         return new Tax(0);
     }
@@ -49,22 +49,28 @@ public class Position
         if (operation.UnitCost <= this.AveragePrice)
         {
             Loss += (this.AveragePrice - operation.UnitCost) * operation.Quantity;
+            this.Units -= operation.Quantity;
             return new Tax(0);
         }
 
-        if (operation.TotalOperationValue <= UNPAYABLE_MAX_VALUE)
+        if (operation.TotalOperationValue <= OperationConstants.NonTaxableMaxValue)
+        {
+            this.Units -= operation.Quantity;
             return new Tax(0);
+        }
 
         var profit = (operation.UnitCost - this.AveragePrice) * operation.Quantity;
         if (profit > Loss)
         {
-            var prcentage = 0.2m;
-            var taxAmount = Math.Round(profit * prcentage);
+            var amountAfterDeduction = profit - Loss;
+            var taxAmount = Math.Round(amountAfterDeduction * OperationConstants.TaxInterest);
             Loss = 0;
+            this.Units -= operation.Quantity;
             return new Tax(taxAmount);
         }
 
         Loss -= operation.TotalOperationValue;
+        this.Units -= operation.Quantity;
         return new Tax(0);
 
     }
