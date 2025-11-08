@@ -1,6 +1,5 @@
 ﻿using CapitalGains.Constants;
 using GanhoDeCapital.Models;
-using System.Runtime.CompilerServices;
 
 namespace GanhoDeCapital.Handlers;
 public class TaxCalculator

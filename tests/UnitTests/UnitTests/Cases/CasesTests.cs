@@ -1,7 +1,7 @@
 ﻿using FluentAssertions;
 using GanhoDeCapital.Handlers;
 using GanhoDeCapital.Models;
-namespace UnitTests.Cases;
+namespace Tests.UnitTests.Cases;
 public class CasesTests
 {
     [Fact]

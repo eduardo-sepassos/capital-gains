@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CapitalGains", "src\Capital
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{786FC9E5-31FC-4DDE-A4B1-41095D91609D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests", "tests\UnitTests\UnitTests.csproj", "{F9E32B02-E9E8-438D-8240-7418AC1270CB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tests", "tests\UnitTests\Tests.csproj", "{F9E32B02-E9E8-438D-8240-7418AC1270CB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

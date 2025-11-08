@@ -4,7 +4,7 @@ using FluentAssertions;
 using GanhoDeCapital.Handlers;
 using GanhoDeCapital.Models;
 
-namespace UnitTests;
+namespace Tests.UnitTests;
 
 public class TaxCalculatorTests
 {

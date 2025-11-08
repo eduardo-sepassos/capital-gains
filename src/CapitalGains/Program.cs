@@ -1,23 +1,26 @@
-﻿using GanhoDeCapital.Handlers;
-using GanhoDeCapital.Models;
-using System.Text.Json;
+﻿using CapitalGains.Handlers;
 
-Console.WriteLine("Enter the operations list:");
-Console.WriteLine();
 
-var input = Console.ReadLine();
-Console.Clear();
-
-var lines = input.Split('[', StringSplitOptions.RemoveEmptyEntries);
-
-foreach (var item in lines)
+while (true)
 {
-    var operations = JsonSerializer.Deserialize<IEnumerable<Operation>>($"[{item}");
+    Console.WriteLine();
+    Console.WriteLine("Press 'Q' to quit.");
+    Console.WriteLine("Enter the operations list:");
+    Console.WriteLine();
 
-    var results = new TaxCalculator(operations)
-                    .Calculate();
+    var input = Console.ReadLine();
 
-    Console.WriteLine(JsonSerializer.Serialize(results));
-    
+    if(input?.ToUpper() == "Q")
+    {
+        Console.WriteLine("Exiting ...");
+        break;
+    }
+
+    Console.Clear();
+
+    var result = OpertionsProcessor.ProcessOperations(input);
+
+    Console.WriteLine(result);
+
 }
 
