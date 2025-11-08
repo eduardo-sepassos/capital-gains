@@ -34,11 +34,6 @@ Este projeto implementa uma solução para o desafio de cálculo do imposto sobre G
     *   O programa irá aguardar a entrada de operações no formato stdin.
     *   A saída será uma lista de impostos no formato do stdout.
 
-    **Para executar continuamente até que o usuário pressione 'Q':**
-        * Depois de rodar o comando dotnet run
-        * Escreva as operações
-        * Para sair do programa, escreva Q e aperte enter
-
 
 ## Instruções para Executar os Testes da Solução
 
